@@ -11,10 +11,11 @@ class MeetupsTestCase(unittest.TestCase):
         self.client = create_app('testing').test_client()
         self.data = {
             "meetup_id": 1,
-            "createdOn": "Date",
-            "location": "String",
-            "topic": "String",
-            "happeningOn": "Date",
+            "createdOn": "10/10/10",
+            "location": "kenya",
+            "topic": "immigration",
+            "happeningOn": "10/10/10",
+            "tags": "API"
         }
 
     def test_create_meetup(self):
