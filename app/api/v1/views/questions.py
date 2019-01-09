@@ -8,15 +8,14 @@ class AllQuestionsApi(Resource):
 
     def post(self):
         data = request.get_json()
-        question_id = len(all_Questions)+1
+
         createdOn = data["createdOn"]
         createdBy = data["createdBy"]
         meetup = data["meetup"]
         topic = data["topic"]
-        status = data["status"]
 
-        new_question = Questions(
-            question_id, createdOn, createdBy, meetup, topic, status).create_question()
+        new_question = Questions(createdOn, createdBy,
+                                 meetup, topic).create_question()
 
         response = jsonify({"status": 201,
                             "data": new_question})
