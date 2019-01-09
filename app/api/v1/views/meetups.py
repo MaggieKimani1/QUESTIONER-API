@@ -27,7 +27,18 @@ class AllMeetupsApi(Resource):
         '''Endpoint for getting all meetup records'''
 
         meetups = Meetups.get_all_meetups(self)
-        response = jsonify({"status": 201,
+        response = jsonify({"status": 200,
                             "data": meetups})
+        response.status_code = 200
+        return response
+
+
+class SingleMeetupApi(Resource):
+    '''Endpoint for single meetup functionality'''
+
+    def get(self, meetup_id):
+        single_meetup = Meetups.get_one_meetup(self, meetup_id)
+        response = jsonify({"status": 200,
+                            "data": single_meetup})
         response.status_code = 200
         return response
