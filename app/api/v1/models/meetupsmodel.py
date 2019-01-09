@@ -25,3 +25,9 @@ class Meetups():
 
     def get_all_meetups(self):
         return all_meetups
+
+    def get_one_meetup(self, meetup_id):
+        for meetup in all_meetups:
+            if meetup["meetup_id"] == meetup_id:
+                return meetup
+        return {"message": "Meetup not found"}, 404
