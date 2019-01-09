@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, jsonify
+from flask import Flask, request, jsonify
 from flask_restful import Resource
 from app.api.v1.models.meetupsmodel import all_meetups, Meetups
 
