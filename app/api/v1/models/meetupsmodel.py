@@ -22,3 +22,6 @@ class Meetups():
                   }
         all_meetups.append(meetup)
         return meetup
+
+    def get_all_meetups(self):
+        return all_meetups
