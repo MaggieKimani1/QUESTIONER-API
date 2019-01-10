@@ -1,7 +1,7 @@
 import unittest
 import json
 from app import create_app
-import os
+import datetime
 
 
 class MeetupsTestCase(unittest.TestCase):
@@ -11,10 +11,9 @@ class MeetupsTestCase(unittest.TestCase):
         self.client = create_app('testing').test_client()
         self.data = {
             "meetup_id": 1,
-            "createdOn": "10/10/10",
+            # "createdOn": datetime.datetime.now().strftime,
             "location": "kenya",
             "topic": "immigration",
-
         }
 
     def test_create_meetup(self):
@@ -26,7 +25,7 @@ class MeetupsTestCase(unittest.TestCase):
     def test_get_all_meetups(self):
         '''Test if user can get all meetup records'''
         response = self.client.get(
-            'api/v1/meetups', content_type="application/json")
+            'api/v1/meetups/upcoming', content_type="application/json")
         self.assertEqual(response.status_code, 200)
 
     def test_get_one_meetup(self):
@@ -37,20 +36,16 @@ class MeetupsTestCase(unittest.TestCase):
 
     def test_rsvp(self):
         '''Tests if a user can be able to rsvp to a specific meetup'''
-        result = {
-            "id": 1,
-            "createdOn": "2/2/20",
-            "meetup": 2,
-            "title": "Tech",
-            "topic": "python",
+        data = {
             "status": "yes"
         }
 
         response = self.client.post(
-            'api/v1/meetups/1/rsvps', data=json.dumps(result), content_type="application/json")
+            'api/v1/meetups/1/rsvps', data=json.dumps(data), content_type="application/json")
         self.assertEqual(response.status_code, 201)
 
+    
 
-'''Standard unittest runner for executing the test'''
+# Standard unittest runner for executing the test
 if __name__ == '__main__':
     unittest.main()
