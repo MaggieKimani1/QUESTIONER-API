@@ -18,31 +18,29 @@ class AllMeetupsApi(Resource):
 
             meetup_record = Meetups().create_meetup(meetup_id,
                                                     location, topic)
-            print(all_meetups)
-            print(meetup_record)
 
             if meetup_record:
                 response = jsonify({"status": 201,
                                     "data": meetup_record})
                 response.status_code = 201
-                print(all_meetups)
+
                 return response
             else:
                 return 'Could not create meetup', 400
 
-        except Exception as e:
+        except:
             return "PLease include all details", 400
-            # print(e)
 
     def get(self):
         '''Endpoint for geting all meetup records'''
 
         meetups = Meetups().get_all_meetups()
-        # print(all_meetups)
-        response = jsonify({"status": 200,
-                            "data": meetups})
-        response.status_code = 200
-        return response
+        if meetups:
+            response = jsonify({"status": 200,
+                                "data": meetups})
+            response.status_code = 200
+            return response
+        return {"message": "No meetup found"}
 
 
 class SingleMeetupApi(Resource):
@@ -77,8 +75,8 @@ class SingleMeetupApi(Resource):
         if not new_rsvp:
             return {"Message": 'RSVP could not be saved'}, 400
 
-        return {"Message": 'RSVP saved for meetup {} successfully'.format(meetup_id)}, 200
+        return {"Message": 'RSVP saved for meetup {} successfully'.format(meetup_id)}, 201
 
 
-class RsvpApi(Resource):
-    '''Endpoint for Rsvps'''
+# class RsvpApi(Resource):
+#     '''Endpoint for Rsvps'''
