@@ -1,7 +1,7 @@
 import unittest
 import json
 from app import create_app
-import datetime
+# import datetime
 
 
 class MeetupsTestCase(unittest.TestCase):
@@ -30,11 +30,9 @@ class MeetupsTestCase(unittest.TestCase):
 
     def test_get_one_meetup(self):
         '''Test if the user can get a specific meetup record'''
-        response = self.client.post(
-            'api/v1/meetups', data=json.dumps(self.data), content_type="application/json")
 
         response = self.client.get(
-            'api/v1/meetups/<int:meetup_id>', content_type="application/json")
+            'api/v1/meetups/1', content_type="application/json")
         self.assertEqual(response.status_code, 200)
 
     def test_rsvp(self):
