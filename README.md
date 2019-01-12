@@ -1,16 +1,16 @@
 # QUESTIONER-API
 
-Questioner is a UI that hosts crowd-source questions for a meetup.
-
-### Badges
-
 [![Build Status](https://travis-ci.com/MaggieKimani1/QUESTIONER-API.svg?branch=develop)](https://travis-ci.com/MaggieKimani1/QUESTIONER-API)
 [![Coverage Status](https://coveralls.io/repos/github/MaggieKimani1/QUESTIONER-API/badge.svg?branch=develop)](https://coveralls.io/github/MaggieKimani1/QUESTIONER-API?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/043d24abfe9927d9ec1f/maintainability)](https://codeclimate.com/github/MaggieKimani1/QUESTIONER-API/maintainability)
 
-### UI link
+## Brief Description
 
-[(https://maggiekimani1.github.io/Questioner-UI/UI/templates/index.html)]
+Questioner is a UI that hosts crowd-source questions for a meetup.
+
+### Heroku link
+
+[(https://kquestioner-api--heroku.herokuapp.com/)]
 
 ### Pivotal Tracker Board
 
@@ -59,8 +59,8 @@ Run the application
 
 | Endpoint                            |                   Functionality                    |
 | ----------------------------------- | :------------------------------------------------: |
-| POST/meetups                        |              Create a meetup records               |
-| GET/meetups/<meetup_id>             |          Featch a specific meetup record           |
+| POST/meetups                        |               Create a meetup record               |
+| GET/meetups/<meetup_id>             |           Fetch a specific meetup record           |
 | GET /meetups/upcoming/              |         Fetch all upcoming meetup records          |
 | POST /questions                     |      Create a question for a specific meetup       |
 | PATCH /questions/<question_id>/vote | Vote (increase votes by 1) for a specific question |
