@@ -1,3 +1,4 @@
+import datetime
 all_Questions = []
 
 
@@ -11,7 +12,7 @@ class Questions():
     def create_question(self, createdOn, createdBy, meetup, topic, upvotes, downvotes):
         question_payload = {
             "question_id": len(all_Questions)+1,
-            "createdOn": createdOn,
+            "createdOn": datetime.datetime.now().strftime("%y-%m-%d-%H-%M"),
             "createdBy": createdBy,
             "meetup": meetup,
             "topic": topic,
