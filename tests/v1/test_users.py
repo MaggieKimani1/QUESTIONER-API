@@ -10,11 +10,11 @@ class UsersTestCase(unittest.TestCase):
         self.app = create_app(config_name="testing")
         self.client = create_app('testing').test_client()
         self.data = {"id": 1,
-                     "firstname”: "Maggie",
+                     "firstname": "Maggie",
                      "lastname": "Kimani",
                      "email": "Maggiekim42@gmail.com",
-                     "registered": ""
-                     "isAdmin": True,
+                     "registered": "",
+                     "isAdmin": "True",
                      }
 
     def test_create_user_account(self):
