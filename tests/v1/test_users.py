@@ -9,16 +9,15 @@ class UsersTestCase(unittest.TestCase):
         '''Define test variables and initialize app'''
         self.app = create_app(config_name="testing")
         self.client = create_app('testing').test_client()
-        self.data = {"id": 1,
-                     "firstname": "Maggie",
-                     "lastname": "Kimani",
-                     "email": "Maggiekim42@gmail.com",
-                     "registered": "",
-                     "isAdmin": "True",
-                     }
+        self.data = {
+            "first_name": "Maggie",
+            "last_name": "Kimani",
+            "email": "Maggiekim42@gmail.com",
+            "isAdmin": "True",
+        }
 
-    def test_create_user_account(self):
-        '''Test if admin can create a meetup'''
+    def test_signup(self):
+        '''Test if admin can create an account'''
         response = self.client.post(
-            'api/v1/users', data=json.dumps(self.data), content_type="application/json")
+            'api/v1/auth', data=json.dumps(self.data), content_type="application/json")
         self.assertEqual(response.status_code, 201)

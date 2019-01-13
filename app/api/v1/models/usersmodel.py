@@ -5,16 +5,13 @@ all_Users = []
 
 class Users():
 
-    def __init__(self):
-        pass
+    def signup(self, first_name, last_name, email, isAdmin):
+        user = {
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+            "isAdmin": isAdmin
+        }
 
-        def signup(self, firstname, lastname, email, registered, isAdmin):
-            user = {
-                "firstname": "Maggie",
-                "lastname": "Kimani",
-                "email": "maggiekim42@gmail.com",
-                "registered": datetime.datetime.now().strftime("%y-%m-%d-%H-%M"),
-                "isAdmin": "True"
-            }
-
-            all_Users.append(user)
+        all_Users.append(user)
+        return user

@@ -6,9 +6,6 @@ all_rsvps = []
 class Meetups():
     '''Initialize class variables the meetups model needs once it starts'''
 
-    def __init__(self):
-        pass
-
     def create_meetup(self, meetup_id, location, topic):
         meetup = {"meetup_id": meetup_id,
                   "createdOn": datetime.datetime.now().strftime("%y-%m-%d-%H-%M"),
