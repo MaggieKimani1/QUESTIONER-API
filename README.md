@@ -38,33 +38,45 @@ Navigate to the cloned repository
 ### Installation
 
 Create a virtual environment
+
 `virtualenv -p python3 venv`
 
 Activate the virtual environment
+
 `source venv/bin/activate`
 
 Install git
+
 `sudo apt-get install git-all`
 
 Switch to 'develop' branch
+
 `git checkout develop`
 
 Install requirements
+
 `pip install -r requirements.txt`
 
 Run the application
+
 `python3 run.py`
+
+### Testing
+
+Run this command on the terminal
+
+`pytest`
 
 ### Endpoints
 
 | Endpoint                            |                   Functionality                    |
 | ----------------------------------- | :------------------------------------------------: |
 | POST/meetups                        |               Create a meetup record               |
-| GET/meetups/<id>             |           Fetch a specific meetup record           |
+| GET/meetups/<id>                    |           Fetch a specific meetup record           |
 | GET /meetups/upcoming/              |         Fetch all upcoming meetup records          |
 | POST /questions                     |      Create a question for a specific meetup       |
 | PATCH /questions/<question_id>/vote | Vote (increase votes by 1) for a specific question |
-| POST /meetups/<id>/rsvps     |             Respond to a meetup(RSVP)              |
+| POST /meetups/<id>/rsvps            |             Respond to a meetup(RSVP)              |
 
 ### Authors
 
