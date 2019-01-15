@@ -7,9 +7,9 @@ class Questions():
 
     def create_question(self, question_id, createdBy, meetup, topic, upvotes, downvotes, body):
         """Method for creating a question"""
-
+    
         question_payload = {
-            "question_id": len(all_Questions)+1,
+            "id": len(all_Questions)+1,
             "createdOn": datetime.datetime.now().strftime("%y-%m-%d-%H-%M"),
             "createdBy": createdBy,
             "meetup": meetup,
@@ -17,8 +17,8 @@ class Questions():
             "upvotes": upvotes,
             "downvotes": downvotes,
             "body": body
-
         }
+  
         all_Questions.append(question_payload)
         return question_payload
 
@@ -26,10 +26,11 @@ class Questions():
         '''Vote a question'''
 
         question = [
-            question for question in all_Questions if question['question_id'] == question_id
+            question for question in all_Questions if question['id'] == id
         ]
         if not question:
-            return "Question does not exist", 400
+            return {"status": 404,
+                    "message": "Question does not exist"}
         if vote == "+":
             action = "upvoted"
             new_upvotes = question[0]["upvotes"]+1
@@ -40,7 +41,7 @@ class Questions():
             new_downvotes = question[0]["downvotes"]+1
 
         question_payload = {
-            "question_id":  question[0]['question_id'],
+            "id":  question[0]['id'],
             "createdOn": question[0]['createdOn'],
             "createdBy": question[0]['createdBy'],
             "meetup": question[0]['meetup'],
@@ -51,7 +52,9 @@ class Questions():
         }
 
         for i, question in enumerate(all_Questions):
-            if question['question_id'] == question_id:
+            if question['id'] == id:
                 all_Questions[i] = question_payload
 
-        return {"Message": 'You {} question {} successfully'.format(action, question_id)}, 200
+        return {"Message": 'You {} question {} successfully'.format(action, id)}, 200
+
+

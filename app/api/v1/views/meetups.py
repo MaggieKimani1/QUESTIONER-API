@@ -69,7 +69,6 @@ class SingleMeetupApi(Resource):
         meetup_available = Meetups().get_one_meetup(id)
         if not meetup_available:
             return "You cannot RSVP an unavailable meetup", 400
-
         return {"status": 201,
                 "data": [{
                     "meetup": id,
