@@ -11,8 +11,8 @@ api_v1 = Api(app_v1)
 
 api_v1.add_resource(AllMeetupsApi, '/meetups', '/meetups/upcoming')
 api_v1.add_resource(
-    SingleMeetupApi, '/meetups/<int:meetup_id>', '/meetups/<int:meetup_id>/rsvps')
-# api_v1.add_resource(RsvpApi, '/meetups/<int:meetup_id>/rsvps/<int:rsvp_id>')
+    SingleMeetupApi, '/meetups/<int:id>', '/meetups/<int:id>/rsvps')
+# api_v1.add_resource(RsvpApi, '/meetups/<int:id>/rsvps/<int:rsvp_id>')
 api_v1.add_resource(AllQuestionsApi, '/questions')
 api_v1.add_resource(SingleQuestion, '/questions/<int:question_id>')
 api_v1.add_resource(AllUsersApi, '/auth')
