@@ -53,7 +53,7 @@ class SingleMeetupApi(Resource):
         if meetup_available:
             return {'Meetup': meetup_available,
                     }, 200
-        return {"message": "That id does not exist"}, 404
+        return {"message": "That meetup_id does not exist"}, 404
 
     def post(self, id):
         '''Post an RSVP'''
