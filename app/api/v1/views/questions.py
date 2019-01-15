@@ -7,17 +7,18 @@ class AllQuestionsApi(Resource):
     '''Endpoint for all questions functionality'''
 
     def post(self):
+        """Endpoint for posting a question for a specific meetup"""
         data = request.get_json()
 
-        createdOn = data["createdOn"]
         createdBy = data["createdBy"]
         meetup = data["meetup"]
         topic = data["topic"]
         upvotes = 0
         downvotes = 0
+        body = data["body"]
 
-        new_question = Questions().create_question(createdOn, createdBy,
-                                                   meetup, topic, upvotes, downvotes)
+        new_question = Questions().create_question(createdBy,
+                                                   meetup, topic, upvotes, downvotes, body)
 
         response = jsonify({"status": 201,
                             "data": new_question})
