@@ -58,37 +58,24 @@ class SingleMeetupApi(Resource):
     def post(self, id):
         '''Post an RSVP'''
         data = request.get_json()
-        try:
-            response = data['response']
-        except:
-            return 'Check input data', 400
+        if not data:
+            "Please submit your RSVP", 400
+        response = data['response']
+
+        if (response != "yes" and response != "no" and response != "maybe"):
+            return {"error": "response should be a yes, no or maybe"}
 
         meetup_available = Meetups().get_one_meetup(id)
         if not meetup_available:
             return "You cannot RSVP an unavailable meetup", 400
 
-        new_rsvp = Meetups().create_rsvp(id, response)
+        # new_rsvp = Meetups().create_rsvp(id, response)
 
-        if not new_rsvp:
-            return {"Message": 'RSVP could not be saved'}, 400
+        # if not new_rsvp:
+        #     return {"Message": 'RSVP could not be saved'}, 400
 
-        return {"Message": 'RSVP saved for meetup {} successfully'.format(id)}, 201
-
-    def post(self, meetup_id):
-        args = parser.parse_args()
-        status = args["status"]
-
-        status = status.lower()
-
-        if (status != "yes" and status != "no" and status != "maybe"):
-            return {"error": "Status should be a yes, no or maybe"}
-
-        meetup = meetup_models.Meetups.get_specific_meetup(meetup_id)
-        if meetup:
-            return {
-                "status": 201,
+        return {"status": 201,
                 "data": [{
-                    "meetup": meetup_id,
-                    "status": status
-                }]
-            }, 201
+                    "meetup": id,
+                    "response": response
+                }]}

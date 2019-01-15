@@ -9,7 +9,7 @@ class Questions():
 
         pass
 
-    def create_question(self, createdOn, createdBy, meetup, topic, upvotes, downvotes, body):
+    def create_question(self, createdBy, meetup, topic, upvotes, downvotes, body):
         question_payload = {
             "id": len(all_Questions)+1,
             "createdOn": datetime.datetime.now().strftime("%y-%m-%d-%H-%M"),

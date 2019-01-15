@@ -26,13 +26,12 @@ class Meetups():
             meetup for meetup in all_meetups if meetup['id'] == id]
         return meetup_available
 
-    def create_rsvp(self, id, response):
-        rsvp_details = {
-            "id": len(all_rsvps)+1,
-            "meetup": id,
-            "response": response
-        }
+    # def create_rsvp(self, rsvp_id, response):
+    #     rsvp_details = {
+    #         "rsvp_id": rsvp_id,
+    #         "meetup": meetup,
+    #         "response": response}
 
-        all_rsvps.append(rsvp_details)
+    #     all_rsvps.append(rsvp_details)
 
-        return rsvp_details
+    #     return rsvp_details

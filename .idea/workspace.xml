@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9124946-d0cf-4f34-ab7a-9535e9925a2a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/v1/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/v1/models/meetupsmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/models/meetupsmodel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/v1/models/questionsmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/models/questionsmodel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/v1/models/usersmodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/models/usersmodel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/v1/views/meetups.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/views/meetups.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/v1/views/questions.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/views/questions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/v1/views/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/v1/views/users.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/v1/test_meetups.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/v1/test_meetups.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/api/v1/views/meetups.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="30" column="34" lean-forward="true" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+            <state relative-caret-position="456">
+              <caret line="80" column="19" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -215,8 +210,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/api/v1/views/meetups.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="30" column="34" lean-forward="true" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+        <state relative-caret-position="456">
+          <caret line="80" column="19" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
