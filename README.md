@@ -38,21 +38,27 @@ Navigate to the cloned repository
 ### Installation
 
 Create a virtual environment
+
 `virtualenv -p python3 venv`
 
 Activate the virtual environment
+
 `source venv/bin/activate`
 
 Install git
+
 `sudo apt-get install git-all`
 
 Switch to 'develop' branch
+
 `git checkout develop`
 
 Install requirements
+
 `pip install -r requirements.txt`
 
 Run the application
+
 `python3 run.py`
 
 ### Testing
