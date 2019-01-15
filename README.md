@@ -57,7 +57,7 @@ Run the application
 
 ### Testing
 
-Run the command
+Run this command on the terminal
 
 `pytest`
 
