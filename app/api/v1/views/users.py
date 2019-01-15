@@ -29,16 +29,3 @@ class AllUsersApi(Resource):
 
         except:
             return "Please include all details", 400
-
-
-class SingleUserApi(Resource):
-    '''Endpoint for one user functionality'''
-
-    def post(self):
-        data = request.get_json
-
-        if not data:
-            return "Data must be in json format", 404
-
-        email = data["email"]
-        password = data["password"]
