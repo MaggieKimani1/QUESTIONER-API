@@ -55,16 +55,22 @@ Install requirements
 Run the application
 `python3 run.py`
 
+### Testing
+
+Run the command
+
+`pytest`
+
 ### Endpoints
 
 | Endpoint                            |                   Functionality                    |
 | ----------------------------------- | :------------------------------------------------: |
 | POST/meetups                        |               Create a meetup record               |
-| GET/meetups/<id>             |           Fetch a specific meetup record           |
+| GET/meetups/<id>                    |           Fetch a specific meetup record           |
 | GET /meetups/upcoming/              |         Fetch all upcoming meetup records          |
 | POST /questions                     |      Create a question for a specific meetup       |
 | PATCH /questions/<question_id>/vote | Vote (increase votes by 1) for a specific question |
-| POST /meetups/<id>/rsvps     |             Respond to a meetup(RSVP)              |
+| POST /meetups/<id>/rsvps            |             Respond to a meetup(RSVP)              |
 
 ### Authors
 
