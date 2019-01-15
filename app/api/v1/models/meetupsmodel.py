@@ -5,7 +5,6 @@ all_rsvps = []
 
 class Meetups():
     '''Initialize class variables the meetups model needs once it starts'''
-
     def create_meetup(self, id, location, topic, happeningOn, Tags):
         meetup = {"id": id,
                   "createdOn": datetime.datetime.now().strftime("%y-%m-%d-%H-%M"),
@@ -18,6 +17,7 @@ class Meetups():
         return meetup
 
     def get_all_meetups(self):
+        """method for getting all upcoming meetups"""
         return all_meetups
 
     def get_one_meetup(self, id):
@@ -25,13 +25,3 @@ class Meetups():
         meetup_available = [
             meetup for meetup in all_meetups if meetup['id'] == id]
         return meetup_available
-
-    # def create_rsvp(self, rsvp_id, response):
-    #     rsvp_details = {
-    #         "rsvp_id": rsvp_id,
-    #         "meetup": meetup,
-    #         "response": response}
-
-    #     all_rsvps.append(rsvp_details)
-
-    #     return rsvp_details

@@ -8,8 +8,8 @@ class AllQuestionsApi(Resource):
     '''Endpoint for all questions functionality'''
 
     def post(self):
-        """This endpoint creates a question"""
-        meetup = Meetups()
+        """Endpoint for posting a question for a specific meetup"""
+     
         data = request.get_json()
 
         createdBy = data["createdBy"]
@@ -30,6 +30,7 @@ class AllQuestionsApi(Resource):
         meetup_available = meetup.get_one_meetup(id)
         if not meetup_available:
             return "You cannot RSVP an unavailable meetup", 400
+          
         new_question = Questions().create_question(createdBy,
                                                    meetup, topic, upvotes, downvotes, body)
 

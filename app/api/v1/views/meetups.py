@@ -7,6 +7,7 @@ class AllMeetupsApi(Resource):
     """Endpoint for all meetups functionality"""
 
     def post(self):
+        """This endpoint creates a meetup record"""
         data = request.get_json()
 
         if not data:
@@ -18,7 +19,7 @@ class AllMeetupsApi(Resource):
         happeningOn = data["happeningOn"]
         tags = data["tags"]
 
-        if not location:
+        if not location or location.isspace():
             return make_response(jsonify({"message": "location must be provided"}), 400)
         if not topic or topic.isspace():
             return make_response(jsonify({"message": "topic must be provided"}), 400)
@@ -68,12 +69,6 @@ class SingleMeetupApi(Resource):
         meetup_available = Meetups().get_one_meetup(id)
         if not meetup_available:
             return "You cannot RSVP an unavailable meetup", 400
-
-        # new_rsvp = Meetups().create_rsvp(id, response)
-
-        # if not new_rsvp:
-        #     return {"Message": 'RSVP could not be saved'}, 400
-
         return {"status": 201,
                 "data": [{
                     "meetup": id,

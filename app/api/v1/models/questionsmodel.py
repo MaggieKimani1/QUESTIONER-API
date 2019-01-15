@@ -5,11 +5,9 @@ all_Questions = []
 class Questions():
     '''Initialize class variables the questions model needs once it starts'''
 
-    def __init__(self):
-
-        pass
-
-    def create_question(self, createdBy, meetup, topic, upvotes, downvotes, body):
+    def create_question(self, question_id, createdBy, meetup, topic, upvotes, downvotes, body):
+        """Method for creating a question"""
+    
         question_payload = {
             "id": len(all_Questions)+1,
             "createdOn": datetime.datetime.now().strftime("%y-%m-%d-%H-%M"),
@@ -20,6 +18,7 @@ class Questions():
             "downvotes": downvotes,
             "body": body
         }
+  
         all_Questions.append(question_payload)
         return question_payload
 
@@ -59,13 +58,3 @@ class Questions():
         return {"Message": 'You {} question {} successfully'.format(action, id)}, 200
 
 
-# question = [{
-#             "question_id": len(all_Questions)+1,
-#             "createdOn": datetime.datetime.now().strftime("%y-%m-%d-%H-%M"),
-#             "createdBy": createdBy,
-#             "meetup": meetup,
-#             "topic": topic,
-#             "upvotes": upvotes,
-#             "downvotes": downvotes
-
-#         }]
