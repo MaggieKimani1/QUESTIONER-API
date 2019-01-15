@@ -1,38 +1,38 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_restful import Resource
 from app.api.v1.models.meetupsmodel import all_meetups, Meetups, all_rsvps
 
 
 class AllMeetupsApi(Resource):
-    '''Endpoint for all meetups functionality'''
+    """Endpoint for all meetups functionality"""
 
     def post(self):
         data = request.get_json()
 
         if not data:
-            return "Data must be in JSON format", 404
-        try:
-            meetup_id = len(all_meetups) + 1
-            location = data["location"]
-            topic = data["topic"]
+            return "Please provide the required details", 400
 
-            meetup_record = Meetups().create_meetup(meetup_id,
-                                                    location, topic)
+        id = len(all_meetups) + 1
+        location = data["location"]
+        topic = data["topic"]
+        happeningOn = data["happeningOn"]
+        tags = data["tags"]
 
-            if meetup_record:
-                response = jsonify({"status": 201,
-                                    "data": meetup_record})
-                response.status_code = 201
-
-                return response
-            else:
-                return 'Could not create meetup', 400
-
-        except:
-            return "PLease include all details", 400
+        if not location:
+            return make_response(jsonify({"message": "location must be provided"}), 400)
+        if not topic or topic.isspace():
+            return make_response(jsonify({"message": "topic must be provided"}), 400)
+        if not happeningOn or happeningOn.isspace():
+            return make_response(jsonify({"message": "happeningOn must be provided"}), 400)
+        if not tags:
+            return make_response(jsonify({"message": "tags must be provided"}), 400)
+        meetup_record = Meetups().create_meetup(id, location, topic, happeningOn, tags)
+        response = jsonify({"status": 201, "data": meetup_record})
+        response.status_code = 201
+        return response
 
     def get(self):
-        '''Endpoint for geting all meetup records'''
+        """Endpoint for geting all meetup records"""
 
         meetups = Meetups().get_all_meetups()
         if meetups:
@@ -40,43 +40,42 @@ class AllMeetupsApi(Resource):
                                 "data": meetups})
             response.status_code = 200
             return response
-        return {"message": "No meetup found"}
+        return {"message": "No meetup found"}, 404
 
 
 class SingleMeetupApi(Resource):
     '''Endpoint for single meetup functionality'''
 
-    def get(self, meetup_id):
-        meetup_available = Meetups().get_one_meetup(meetup_id)
-        rsvp_available = [
-            rsvp for rsvp in all_rsvps if rsvp['meetup_id'] == meetup_id
-        ]
+    def get(self, id):
+        '''Fetching a single meetup'''
+        meetup_available = Meetups().get_one_meetup(id)
+
         if meetup_available:
             return {'Meetup': meetup_available,
-                    'RSVPs': rsvp_available}, 200
-        return {"message": "Meetup not found"}, 404
+                    }, 200
+        return {"message": "That meetup_id does not exist"}, 404
 
-    def post(self, meetup_id):
+    def post(self, id):
         '''Post an RSVP'''
+        data = request.get_json()
+        if not data:
+            "Please submit your RSVP", 400
+        response = data['response']
 
-        try:
-            data = request.get_json()
-            status = data['status']
-        except:
-            return 'Check input data', 400
+        if (response != "yes" and response != "no" and response != "maybe"):
+            return {"error": "response should be a yes, no or maybe"}
 
-        meetup_available = Meetups().get_one_meetup(meetup_id)
-        print(meetup_available)
+        meetup_available = Meetups().get_one_meetup(id)
         if not meetup_available:
             return "You cannot RSVP an unavailable meetup", 400
 
-        new_rsvp = Meetups().create_rsvp(meetup_id, status)
+        # new_rsvp = Meetups().create_rsvp(id, response)
 
-        if not new_rsvp:
-            return {"Message": 'RSVP could not be saved'}, 400
+        # if not new_rsvp:
+        #     return {"Message": 'RSVP could not be saved'}, 400
 
-        return {"Message": 'RSVP saved for meetup {} successfully'.format(meetup_id)}, 201
-
-
-# class RsvpApi(Resource):
-#     '''Endpoint for Rsvps'''
+        return {"status": 201,
+                "data": [{
+                    "meetup": id,
+                    "response": response
+                }]}

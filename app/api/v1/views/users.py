@@ -1,3 +1,4 @@
+
 from flask import Flask, request, jsonify
 from flask_restful import Resource
 from app.api.v1.models.usersmodel import all_Users, Users
@@ -8,7 +9,6 @@ class AllUsersApi(Resource):
 
     def post(self):
         data = request.get_json()
-
         if not data:
             return "Data must be in JSON format", 404
         try:
@@ -29,3 +29,16 @@ class AllUsersApi(Resource):
 
         except:
             return "Please include all details", 400
+
+
+class SingleUserApi(Resource):
+    '''Endpoint for one user functionality'''
+
+    def post(self):
+        data = request.get_json
+
+        if not data:
+            return "Data must be in json format", 404
+
+        email = data["email"]
+        password = data["password"]

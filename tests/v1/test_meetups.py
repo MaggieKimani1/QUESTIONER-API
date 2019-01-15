@@ -10,7 +10,7 @@ class MeetupsTestCase(unittest.TestCase):
         self.app = create_app(config_name="testing")
         self.client = create_app('testing').test_client()
         self.data = {
-            "meetup_id": 1,
+            "id": 1,
             # "createdOn": datetime.datetime.now().strftime,
             "location": "kenya",
             "topic": "immigration",
