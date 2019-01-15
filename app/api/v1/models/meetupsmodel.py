@@ -5,13 +5,14 @@ all_rsvps = []
 
 class Meetups():
     '''Initialize class variables the meetups model needs once it starts'''
-    def create_meetup(self, id, location, topic, happeningOn, Tags):
-        meetup = {"id": id,
+
+    def create_meetup(self, id, location, topic, happeningOn, tags):
+        meetup = {"id": len(all_meetups)+1,
                   "createdOn": datetime.datetime.now().strftime("%y-%m-%d-%H-%M"),
                   "location": location,
                   "topic": topic,
                   "happeningOn": happeningOn,
-                  "Tags": Tags
+                  "tags": tags
                   }
         all_meetups.append(meetup)
         return meetup

@@ -11,9 +11,10 @@ class MeetupsTestCase(unittest.TestCase):
         self.client = create_app('testing').test_client()
         self.data = {
             "id": 1,
-            # "createdOn": datetime.datetime.now().strftime,
             "location": "kenya",
-            "topic": "immigration",
+            "topic": "Tech",
+            "happeningOn": "2/3/2018",
+            "tags": "immigration"
         }
 
     def test_create_meetup(self):
@@ -38,7 +39,7 @@ class MeetupsTestCase(unittest.TestCase):
     def test_rsvp(self):
         '''Tests if a user can be able to rsvp to a specific meetup'''
         data = {
-            "status": "yes"
+            "response": "yes"
         }
 
         response = self.client.post(
