@@ -15,11 +15,11 @@ class AllQuestionsApi(Resource):
 
         meetup_available = meetup.get_one_meetup(id)
         if not meetup_available:
-            return {"message": "You cannot post a question to an unavailable meetup"}, 400
+            return {"message": "You cannot post a question to an unavailable meetup", "status": 400}, 400
 
         data = request.get_json()
         if not data:
-            return{"message": "Question body cannot be empty"}, 400
+            return{"message": "Question body cannot be empty", "status": 400}, 400
 
         meetup = id
         topic = data["topic"]
@@ -28,14 +28,16 @@ class AllQuestionsApi(Resource):
         downvotes = data["downvotes"]
 
         if not isinstance(data["meetup"], int):
-            return {"message": "Meetup must be an integer"}, 400
+            return {"message": "Meetup must be an integer", "status": 400}, 400
         if not topic or topic.isspace():
-            return {"message": "topic cannot be blank"}, 400
+            return {"message": "topic cannot be blank", "status": 400}, 400
+        if not body or body.isspace():
+            return {"message": "body must be provided", "status":400}, 400
 
         new_question = Questions().create_question(
             meetup, topic, body, upvotes, downvotes)
 
-        return {"data": new_question}, 201
+        return {"data": new_question, "status": 400}, 201
 
 
 class SingleQuestion(Resource):
