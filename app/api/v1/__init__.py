@@ -10,8 +10,8 @@ app_v1 = Blueprint('api_v1', __name__, url_prefix='/api/v1')
 api_v1 = Api(app_v1)
 
 api_v1.add_resource(AllMeetupsApi, '/meetups', '/meetups/upcoming')
-api_v1.add_resource(SingleMeetupApi, '/meetups/<int:id>',
-                    '/meetups/<int:id>/rsvps')
-api_v1.add_resource(AllQuestionsApi, '/meetups/<int:id>/questions')
-api_v1.add_resource(SingleQuestion, '/questions/<int:question_id>')
+api_v1.add_resource(SingleMeetupApi, '/meetups/<id>',
+                    '/meetups/<id>/rsvps')
+api_v1.add_resource(AllQuestionsApi, '/meetups/<id>/questions')
+api_v1.add_resource(SingleQuestion, '/questions/<question_id>')
 api_v1.add_resource(AllUsersApi, '/auth')

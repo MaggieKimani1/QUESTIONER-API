@@ -12,8 +12,12 @@ class AllQuestionsApi(Resource):
     def post(self, id):
         """Endpoint for posting a question for a specific meetup"""
         meetup = Meetups()
-
+        try:
+            id = int(id)
+        except:
+            return{"message": "The id has to be an integer"}, 400
         meetup_available = meetup.get_one_meetup(id)
+
         if not meetup_available:
             return {"message": "You cannot post a question to an unavailable meetup", "status": 400}, 400
 
@@ -27,17 +31,17 @@ class AllQuestionsApi(Resource):
         upvotes = data["upvotes"]
         downvotes = data["downvotes"]
 
-        if not isinstance(data["meetup"], int):
+        if not isinstance(id, int):
             return {"message": "Meetup must be an integer", "status": 400}, 400
         if not topic or topic.isspace():
             return {"message": "topic cannot be blank", "status": 400}, 400
         if not body or body.isspace():
-            return {"message": "body must be provided", "status":400}, 400
+            return {"message": "body must be provided", "status": 400}, 400
 
         new_question = Questions().create_question(
             meetup, topic, body, upvotes, downvotes)
 
-        return {"data": new_question, "status": 400}, 201
+        return {"data": new_question, "status": 400, "message": "Question posted successfully"}, 201
 
 
 class SingleQuestion(Resource):
@@ -45,12 +49,17 @@ class SingleQuestion(Resource):
 
     def patch(self, question_id):
         """Upvote or downvote a question"""
+        try:
+            question_id = int(question_id)
+        except:
+            return{"message": "The id has to be an integer"}, 400
 
         data = request.get_json()
 
         vote = data['vote']
-        print(vote)
         if vote != '+' and vote != '-':
             return "Vote can only be '+' or '-'"
 
-        return Questions().upvote(question_id, vote)
+        new_vote = Questions().upvote(question_id, vote)
+
+        return {"status": 200, "data": new_vote, "message": "You have successfully voted"}, 200
