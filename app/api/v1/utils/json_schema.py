@@ -12,11 +12,10 @@ meetup_schema = {
 question_schema = {
     "type": "object",
     "properties": {
-        "meetup": {type: "int"},
         "topic": {type: "string"},
         "body": {type: "string"},
         "upvotes": {type: "string"},
         "downvotes": {type: "string"},
     },
-    "required": ["meetup", "topic", "body", "upvotes", "downvotes"]
+    "required": ["topic", "body", "upvotes", "downvotes"]
 }

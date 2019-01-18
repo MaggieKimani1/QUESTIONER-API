@@ -30,16 +30,21 @@ class AllMeetupsApi(Resource):
             return {"message": "happeningOn must be provided", "status": 400}, 400
         if not tags:
             return {"message": "tags must be provided", "status": 400}, 400
+
+        if Meetups().check_meetup(topic):
+            return {"message": "meetup already exists", "status": 400}, 400
+
         meetup_record = Meetups().create_meetup(id, location, topic, happeningOn, tags)
 
-        return {"status": 201, "data": meetup_record}, 201
+        return {"status": 201, "data": meetup_record,
+                "message": "Meetup posted sucessfully"}, 201
 
     def get(self):
         """Endpoint for geting all meetup records"""
 
         meetups = Meetups().get_all_meetups()
         if meetups:
-            return {"status": 200, "data": meetups}, 200
+            return {"status": 200, "data": meetups, "message": "These are the available meetups"}, 200
         return {"message": "No meetup found", "status": 404}, 404
 
 
@@ -48,21 +53,31 @@ class SingleMeetupApi(Resource):
 
     def get(self, id):
         '''Fetching a single meetup'''
+        try:
+            id = int(id)
+        except:
+            return{"message": "The id has to be an integer"}, 400
+
         meetup_available = Meetups().get_one_meetup(id)
 
         if meetup_available:
-            return {'Meetup': meetup_available,
-                    }, 200
+            return {"status": 200, "data": meetup_available, "message": "meetup retrieved"}, 200
         return {"message": "That meetup_id does not exist", "status": 404}, 404
 
     def post(self, id):
         '''Post an RSVP'''
+        try:
+            id = int(id)
+        except:
+            return{"message": "The id has to be an integer"}, 400
         meetup_available = Meetups().get_one_meetup(id)
         if not meetup_available:
             return {"message": "You cannot RSVP an unavailable meetup"}, 400
+
         data = request.get_json()
         if not data:
             {"message": "Please submit your RSVP", "status": 400}, 400
+
         response = data['response']
 
         if (response == "yes" or response == "no" or response == "maybe"):
@@ -70,6 +85,6 @@ class SingleMeetupApi(Resource):
                     "data": [{
                         "meetup": id,
                         "response": response
-                    }]}, 201
+                    }], "message": "RSVP saved for this meetup"}, 201
         else:
             return {"message": "response should be a yes, no or maybe", "status": 400}, 400

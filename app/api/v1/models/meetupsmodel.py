@@ -26,3 +26,8 @@ class Meetups():
         meetup_available = [
             meetup for meetup in all_meetups if meetup['id'] == id]
         return meetup_available
+
+    def check_meetup(self, topic):
+        '''Get meetup by topic'''
+        meetup = [meetup for meetup in all_meetups if meetup['topic'] == topic]
+        return meetup
